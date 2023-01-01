@@ -24,7 +24,7 @@ df1 = pd.read_csv('Data/steam_games_preprocessed_small.csv')
 df2 = pd.read_csv('Data/steam_games.csv', delimiter=';')
 
 # Replace spaces with underscores
-df.columns = df.columns.str.replace(' ', '_')
+df1.columns = df1.columns.str.replace(' ', '_')
 df2.columns = df2.columns.str.replace(' ', '_')
 
 # Assign a list of columns consisting of 'App_ID', 'Developer', 'Publisher', 'Genre', 'Tags', 'Categories', 'Languages', and 'Platforms' to a variable named 'cols'
