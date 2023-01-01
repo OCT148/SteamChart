@@ -23,14 +23,15 @@ from bokeh.layouts import column, row
 df1 = pd.read_csv('Data/steam_games_preprocessed_small.csv')
 df2 = pd.read_csv('Data/steam_games.csv', delimiter=';')
 
-# Assign a list of columns consisting of 'App ID', 'Developer', 'Publisher', 'Genre', 'Tags', 'Categories', 'Languages', and 'Platforms' to a variable named 'cols'
-cols=['App ID', 'Developer', 'Publisher', 'Genre', 'Tags', 'Categories', 'Languages', 'Platforms']
+# Replace spaces with underscores
+df.columns = df.columns.str.replace(' ', '_')
+df2.columns = df2.columns.str.replace(' ', '_')
+
+# Assign a list of columns consisting of 'App_ID', 'Developer', 'Publisher', 'Genre', 'Tags', 'Categories', 'Languages', and 'Platforms' to a variable named 'cols'
+cols=['App_ID', 'Developer', 'Publisher', 'Genre', 'Tags', 'Categories', 'Languages', 'Platforms']
 
 # Merge the two dataframes on the 'App ID' column
 df = pd.merge(df1,df2[cols],on='App ID', how='left')
-
-# Rename the 'Initial Price' column
-df = df.rename(columns={'Initial Price': 'Initial_Price'})
 
 # Show the dataframe
 df.head()
@@ -158,7 +159,7 @@ y_axis_data = Select(
     # Set the options to the column names
     options = ['Ratings', 'Initial_Price', 'Owners_average', 'Estimated Revenue'],
     # Set the initial value to 'Estimated Revenue'
-    value = 'Estimated Revenue',
+    value = 'Estimated_Revenue',
     # Set the title to 'Y-axis'
     title = 'Y-axis'
 )
