@@ -27,11 +27,8 @@ df2 = pd.read_csv('Data/steam_games.csv', delimiter=';')
 df1.columns = df1.columns.str.replace(' ', '_')
 df2.columns = df2.columns.str.replace(' ', '_')
 
-# Assign a list of columns consisting of 'App_ID', 'Developer', 'Publisher', 'Genre', 'Tags', 'Categories', 'Languages', and 'Platforms' to a variable named 'cols'
-cols=['App_ID', 'Developer', 'Publisher', 'Genre', 'Tags', 'Categories', 'Languages', 'Platforms']
-
 # Merge the two dataframes on the 'App_ID' column
-df = pd.merge(df1,df2[cols],on='App_ID', how='left')
+df = pd.merge(df1,df2,on='App_ID', how='left')
 
 # Show the dataframe
 df.head()
