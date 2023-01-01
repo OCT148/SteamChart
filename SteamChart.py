@@ -30,9 +30,6 @@ df2.columns = df2.columns.str.replace(' ', '_')
 # Assign a list of columns consisting of 'App ID', 'Developer', 'Publisher', 'Genre', 'Tags', 'Categories', 'Languages', and 'Platforms' to a variable named 'cols'
 cols=['App_ID', 'Developer', 'Publisher', 'Genre', 'Tags', 'Categories', 'Languages', 'Platforms']
 
-# Merge the two dataframes on the 'App ID' column
-df = pd.merge(df1,df2[cols],on='App ID', how='left')
-
 # Merge the two dataframes on the 'App_ID' column
 df = pd.merge(df1,df2,on='App_ID', how='left')
 
