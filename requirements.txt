@@ -12,7 +12,7 @@ brotlipy==0.7.0
 certifi==2021.5.30
 colorama==0.4.6
 comm==0.1.2
-conda==4.10.3
+conda
 contourpy==1.0.6
 cycler==0.11.0
 debugpy==1.6.4
