@@ -30,8 +30,8 @@ df2.columns = df2.columns.str.replace(' ', '_')
 # Assign a list of columns consisting of 'App_ID', 'Developer', 'Publisher', 'Genre', 'Tags', 'Categories', 'Languages', and 'Platforms' to a variable named 'cols'
 cols=['App_ID', 'Developer', 'Publisher', 'Genre', 'Tags', 'Categories', 'Languages', 'Platforms']
 
-# Merge the two dataframes on the 'App ID' column
-df = pd.merge(df1,df2[cols],on='App ID', how='left')
+# Merge the two dataframes on the 'App_ID' column
+df = pd.merge(df1,df2[cols],on='App_ID', how='left')
 
 # Show the dataframe
 df.head()
@@ -80,9 +80,9 @@ g_platforms.sort()
 # In[ ]:
 
 
-# Create a new column in the DataFrame called 'x' and 'y' and assign the values from the 'Ratings' and 'Estimated Revenue' column to it respectively
+# Create a new column in the DataFrame called 'x' and 'y' and assign the values from the 'Ratings' and 'Estimated_Revenue' column to it respectively
 df['x'] = df['Ratings']
-df['y'] = df['Estimated Revenue']
+df['y'] = df['Estimated_Revenue']
 
 
 # In[26]:
@@ -99,7 +99,7 @@ source = ColumnDataSource(df)
 hover = HoverTool(tooltips = [('Name', '@Name'), ('Ratings', '@Ratings'), ('Price', '@Initial_Price'), ('Developer','@Developer_y'), ('Publisher','@Publisher_y'), ('Genre','@Genre_y')])
 
 # Create a figure with the hover tool and crosshair
-plot = figure(title='Steam Games Chart', x_axis_label='Ratings', y_axis_label='Estimated Revenue', width=800, height=600, tools=[hover,'crosshair'])
+plot = figure(title='Steam Games Chart', x_axis_label='Ratings', y_axis_label='Estimated_Revenue', width=800, height=600, tools=[hover,'crosshair'])
 
 # Set the x-axis and y-axis tick formatter to make the values more readable
 plot.xaxis.formatter = NumeralTickFormatter(format='0.0a')
