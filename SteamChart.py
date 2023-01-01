@@ -31,7 +31,7 @@ df2.columns = df2.columns.str.replace(' ', '_')
 cols=['App_ID', 'Developer', 'Publisher', 'Genre', 'Tags', 'Categories', 'Languages', 'Platforms']
 
 # Merge the two dataframes on the 'App_ID' column
-df = pd.merge(df1,df2,on='App_ID', how='left')
+df = pd.merge(df1,df2[cols],on='App_ID', how='left')
 
 # Show the dataframe
 df.head()
