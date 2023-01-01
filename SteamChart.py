@@ -23,9 +23,15 @@ from bokeh.layouts import column, row
 df1 = pd.read_csv('Data/steam_games_preprocessed_small.csv')
 df2 = pd.read_csv('Data/steam_games.csv', delimiter=';')
 
-# Replace spaces with underscores
+# Replace the spaces of the dataframe column names with underscores
 df1.columns = df1.columns.str.replace(' ', '_')
 df2.columns = df2.columns.str.replace(' ', '_')
+
+# Assign a list of columns consisting of 'App ID', 'Developer', 'Publisher', 'Genre', 'Tags', 'Categories', 'Languages', and 'Platforms' to a variable named 'cols'
+cols=['App_ID', 'Developer', 'Publisher', 'Genre', 'Tags', 'Categories', 'Languages', 'Platforms']
+
+# Merge the two dataframes on the 'App ID' column
+df = pd.merge(df1,df2[cols],on='App ID', how='left')
 
 # Merge the two dataframes on the 'App_ID' column
 df = pd.merge(df1,df2,on='App_ID', how='left')
