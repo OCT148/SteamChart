@@ -23,10 +23,6 @@ from bokeh.layouts import column, row
 df1 = pd.read_csv('Data/steam_games_preprocessed_small.csv')
 df2 = pd.read_csv('Data/steam_games.csv', delimiter=';')
 
-# Drop the 'Website' column from the df2 dataframe and remove rows with missing values
-df_filtered = df2.drop(columns=['Website'])
-df_filtered.dropna(inplace=True)
-
 # Assign a list of columns consisting of 'App ID', 'Developer', 'Publisher', 'Genre', 'Tags', 'Categories', 'Languages', and 'Platforms' to a variable named 'cols'
 cols=['App ID', 'Developer', 'Publisher', 'Genre', 'Tags', 'Categories', 'Languages', 'Platforms']
 
