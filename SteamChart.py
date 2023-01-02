@@ -23,15 +23,18 @@ from bokeh.layouts import column, row
 df1 = pd.read_csv('Data/steam_games_preprocessed_small.csv')
 df2 = pd.read_csv('Data/steam_games.csv', delimiter=';')
 
-# Replace the spaces of the dataframe column names with underscores
-df1.columns = df1.columns.str.replace(' ', '_')
-df2.columns = df2.columns.str.replace(' ', '_')
+# Drop the 'Website' column from the df2 dataframe and remove rows with missing values
+df_filtered = df2.drop(columns=['Website'])
+df_filtered.dropna(inplace=True)
 
 # Assign a list of columns consisting of 'App ID', 'Developer', 'Publisher', 'Genre', 'Tags', 'Categories', 'Languages', and 'Platforms' to a variable named 'cols'
-cols=['App_ID', 'Developer', 'Publisher', 'Genre', 'Tags', 'Categories', 'Languages', 'Platforms']
+cols=['App ID', 'Developer', 'Publisher', 'Genre', 'Tags', 'Categories', 'Languages', 'Platforms']
 
-# Merge the two dataframes on the 'App_ID' column
-df = pd.merge(df1,df2[cols],on='App_ID', how='left')
+# Merge the two dataframes on the 'App ID' column
+df = pd.merge(df1,df2[cols],on='App ID', how='left')
+
+# Rename the 'Initial Price' column
+df = df.rename(columns={'Initial Price': 'Initial_Price'})
 
 # Show the dataframe
 df.head()
@@ -80,9 +83,9 @@ g_platforms.sort()
 # In[ ]:
 
 
-# Create a new column in the DataFrame called 'x' and 'y' and assign the values from the 'Ratings' and 'Estimated_Revenue' column to it respectively
+# Create a new column in the DataFrame called 'x' and 'y' and assign the values from the 'Ratings' and 'Estimated Revenue' column to it respectively
 df['x'] = df['Ratings']
-df['y'] = df['Estimated_Revenue']
+df['y'] = df['Estimated Revenue']
 
 
 # In[26]:
@@ -99,7 +102,7 @@ source = ColumnDataSource(df)
 hover = HoverTool(tooltips = [('Name', '@Name'), ('Ratings', '@Ratings'), ('Price', '@Initial_Price'), ('Developer','@Developer_y'), ('Publisher','@Publisher_y'), ('Genre','@Genre_y')])
 
 # Create a figure with the hover tool and crosshair
-plot = figure(title='Steam Games Chart', x_axis_label='Ratings', y_axis_label='Estimated_Revenue', width=800, height=600, tools=[hover,'crosshair'])
+plot = figure(title='Steam Games Chart', x_axis_label='Ratings', y_axis_label='Estimated Revenue', width=800, height=600, tools=[hover,'crosshair'])
 
 # Set the x-axis and y-axis tick formatter to make the values more readable
 plot.xaxis.formatter = NumeralTickFormatter(format='0.0a')
@@ -159,7 +162,7 @@ y_axis_data = Select(
     # Set the options to the column names
     options = ['Ratings', 'Initial_Price', 'Owners_average', 'Estimated Revenue'],
     # Set the initial value to 'Estimated Revenue'
-    value = 'Estimated_Revenue',
+    value = 'Estimated Revenue',
     # Set the title to 'Y-axis'
     title = 'Y-axis'
 )
